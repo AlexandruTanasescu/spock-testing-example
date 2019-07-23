@@ -1,8 +1,10 @@
-package ro.esolutions.testing;
+package ro.esolutions.testing.services;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ro.esolutions.testing.entities.Client;
+import ro.esolutions.testing.repositories.ClientRepository;
 
 import java.util.List;
 

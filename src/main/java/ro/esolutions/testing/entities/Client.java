@@ -1,4 +1,4 @@
-package ro.esolutions.testing;
+package ro.esolutions.testing.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

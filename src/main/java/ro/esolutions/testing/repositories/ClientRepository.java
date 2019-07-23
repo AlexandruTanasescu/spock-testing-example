@@ -1,6 +1,7 @@
-package ro.esolutions.testing;
+package ro.esolutions.testing.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import ro.esolutions.testing.entities.Client;
 
 import java.util.List;
 
