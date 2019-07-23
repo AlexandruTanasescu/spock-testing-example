@@ -1,4 +1,4 @@
-package ro.esolutions.testing.initialTest
+package ro.esolutions.testing
 
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

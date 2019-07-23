@@ -2,6 +2,7 @@ package ro.esolutions.testing;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,8 @@ public class ClientResource {
     ClientService clientService;
 
     @GetMapping("/all")
-    public List<Client> findAllClients(){
-        return clientService.findAllClients();
+    public ResponseEntity<List<Client>> findAllClients(){
+        return ResponseEntity.ok(clientService.findAllClients());
     }
 
 

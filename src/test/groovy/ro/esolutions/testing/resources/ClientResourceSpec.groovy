@@ -1,5 +1,6 @@
 package ro.esolutions.testing.resources
 
+import org.springframework.http.ResponseEntity
 import ro.esolutions.testing.ClientResource
 import ro.esolutions.testing.ClientService
 import spock.lang.Specification
@@ -21,7 +22,7 @@ class ClientResourceSpec extends Specification{
         0 * _
 
         and:
-        result == []
+        result == ResponseEntity.ok([])
     }
 
 }
