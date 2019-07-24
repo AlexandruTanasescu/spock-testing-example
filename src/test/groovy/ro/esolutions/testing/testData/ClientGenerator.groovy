@@ -1,6 +1,7 @@
 package ro.esolutions.testing.testData
 
 import ro.esolutions.testing.entities.Client
+import ro.esolutions.testing.models.ClientModel
 
 class ClientGenerator {
 
@@ -24,5 +25,15 @@ class ClientGenerator {
         ]
         defaultValues << overrides
         new Client(defaultValues)
+    }
+
+    static ClientModel aClientModel(Map overrides = [:]) {
+        Map defaultValues = [
+                id      : 1,
+                name    : 'Alex',
+                type    : Client.Type.LOYAL
+        ]
+        defaultValues << overrides
+        new ClientModel(defaultValues)
     }
 }

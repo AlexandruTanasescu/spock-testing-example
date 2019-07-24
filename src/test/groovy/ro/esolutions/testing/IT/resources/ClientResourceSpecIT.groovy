@@ -10,11 +10,14 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.jdbc.SqlGroup
 import ro.esolutions.testing.entities.Client
+import ro.esolutions.testing.repositories.ClientRepository
 import spock.lang.Specification
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD
+import static ro.esolutions.testing.testData.ClientGenerator.aClient
 import static ro.esolutions.testing.testData.ClientGenerator.aClientForIt
+import static ro.esolutions.testing.testData.ClientGenerator.aClientModel
 
 @ContextConfiguration
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -22,6 +25,9 @@ class ClientResourceSpecIT extends Specification{
 
     @Autowired
     TestRestTemplate restTemplate
+
+    @Autowired
+    ClientRepository clientRepository
 
     @SqlGroup(
             @Sql(value = '/sql/client.sql', executionPhase = BEFORE_TEST_METHOD)
@@ -37,6 +43,18 @@ class ClientResourceSpecIT extends Specification{
         then:
         result.getStatusCode() == HttpStatus.OK
         result.getBody() == [client]
+    }
+
+    def 'save new client'() {
+        given:
+        def clientModel = aClientModel(id: -2, type: Client.Type.NEW, name: 'Ben Dover')
+
+        when:
+        def result = restTemplate.postForEntity('/client', clientModel, null)
+
+        then:
+        clientRepository.findById(-2L).get() == aClient(id: -2, type: Client.Type.NEW, name: 'Ben Dover', isActive: true)
+        result.statusCode == HttpStatus.OK
     }
 
 }
