@@ -15,14 +15,6 @@ class ClientResourceSpec extends Specification{
     @Subject
     def clientResource = new ClientResource(clientService)
 
-    def 'required args constructor'(){
-        when:
-        new ClientResource()
-
-        then:
-        thrown(NullPointerException)
-    }
-
     def 'find all clients'(){
         given:
         def aClientList = [aClient()]

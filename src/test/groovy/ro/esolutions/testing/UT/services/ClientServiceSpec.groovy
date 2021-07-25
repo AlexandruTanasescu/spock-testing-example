@@ -14,14 +14,6 @@ class ClientServiceSpec extends Specification {
     @Subject
     def clientService = new ClientService(clientRepository)
 
-    def 'required args constructor'(){
-        when:
-        new ClientService()
-
-        then:
-        thrown(NullPointerException)
-    }
-
     def 'find all clients'(){
         given:
         def aClientList = [aClient()]
